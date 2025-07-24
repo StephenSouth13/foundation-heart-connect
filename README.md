@@ -4,7 +4,7 @@ Chào mừng bạn đến với repo chính thức của **F Foundation – Hear
 
 ## 🔗 Demo
 
-🚀 Trang web sẽ được deploy tại: [https://f-foundation.vercel.app](https://f-foundation.vercel.app) *(sắp ra mắt)*  
+🚀 Trang web sẽ được deploy tại: https://foundation-heart-connect.vercel.app/
 GitHub: [github.com/StephenSouth13/foundation-heart-connect](https://github.com/StephenSouth13/foundation-heart-connect)
 
 ---
