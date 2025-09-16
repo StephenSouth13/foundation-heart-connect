@@ -94,14 +94,14 @@ const Footer = () => {
                 <MapPin className="w-5 h-5 text-hope flex-shrink-0 mt-1" />
                 <div>
                   <p className="text-white/80">
-                    Số 123, Đường ABC, Quận 1,<br />
+                    279 Nguyễn Tri Phương, Quận 10,<br />
                     TP. Hồ Chí Minh, Việt Nam
                   </p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-hope flex-shrink-0" />
-                <p className="text-white/80">+84 (0) 123 456 789</p>
+                <p className="text-white/80">+0979 137 018</p>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-hope flex-shrink-0" />

@@ -1,40 +1,40 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, TreePine, Heart, ArrowRight } from "lucide-react";
-import educationProject from "@/assets/education-project.jpg";
-import environmentProject from "@/assets/environment-project.jpg";
-import healthcareProject from "@/assets/healthcare-project.jpg";
+import educationProject from "@/assets/pic.png";
+import environmentProject from "@/assets/pic1.png";
+import healthcareProject from "@/assets/pic3.png";
 
 const ProjectsSection = () => {
   const projects = [
     {
       id: 1,
-      title: "Ánh sáng học đường",
-      description: "Mang điện năng lượng mặt trời đến 50 lớp học vùng cao, giúp các em có thể học tập vào buổi tối.",
+      title: "Hành trình ý chí",
+      description: "Mỗi mùa giải VSM đều mang đến cơ hội cho sinh viên thử thách bản thân qua từng cự ly, rèn luyện ý chí và tinh thần kỷ luật.",
       image: educationProject,
       icon: BookOpen,
-      stats: "50 lớp học • 1,200 học sinh",
-      category: "Giáo dục",
-      completed: 95
+      stats: "3 Mùa giải • 1,200 Sinh viên",
+      category: "Giáo dục,Thể Thao",
+      completed: 100
     },
     {
       id: 2,
-      title: "Hạt giống xanh",
-      description: "Chương trình trồng rừng tại Tây Bắc, góp phần chống xói mòn đất và bảo vệ môi trường.",
+      title: "Cộng đồng GenZ bứt phá",
+      description: "Không chỉ là một giải chạy, VSM đã hình thành một cộng đồng năng động – nơi các bạn trẻ cùng nhau kết nối, chia sẻ đam mê và truyền cảm hứng sống tích cực.",
       image: environmentProject,
       icon: TreePine,
       stats: "10,000 cây xanh • 5 tỉnh",
       category: "Môi trường",
-      completed: 100
+      completed: 60
     },
     {
       id: 3,
-      title: "Nụ cười khỏe mạnh",
-      description: "Khám sức khỏe miễn phí và cung cấp thuốc thiết yếu cho trẻ em vùng sâu vùng xa.",
+      title: "Tương lai rộng mở",
+      description: "VSM hướng đến mở rộng quy mô, lan tỏa tinh thần thể thao và rèn luyện ý chí đến nhiều bạn trẻ hơn trên khắp Việt Nam.",
       image: healthcareProject,
       icon: Heart,
-      stats: "8,500 trẻ em • 20 xã",
-      category: "Y tế",
+      stats: "8,500 Sinh viên • 5 xã",
+      category: "Sức khỏe,Cộng đồng",
       completed: 80
     }
   ];
@@ -48,8 +48,7 @@ const ProjectsSection = () => {
             Dự án nổi bật
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Những thành quả đáng tự hào mà chúng tôi đã đạt được nhờ sự đồng hành 
-            của các nhà hảo tâm và tình nguyện viên
+            Những thành tựu đáng tự hào mà VSM đã đạt được nhờ sự đồng hành của hàng ngàn sinh viên, tình nguyện viên và các trường đại học.
           </p>
         </div>
 

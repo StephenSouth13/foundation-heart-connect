@@ -1,3 +1,6 @@
+// src/components/TestimonialsSection.tsx
+"use client";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Quote, Star } from "lucide-react";
 
@@ -5,84 +8,84 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       id: 1,
-      name: "Chị Nguyễn Thị Hoa",
-      role: "Phụ huynh học sinh",
-      location: "Lào Cai",
-      content: "Nhờ có đèn năng lượng mặt trời, con tôi có thể học bài vào buổi tối. Điểm số của con đã cải thiện rất nhiều. Cảm ơn F Foundation đã mang ánh sáng đến cho gia đình chúng tôi.",
-      avatar: "👩‍🦱",
-      rating: 5
+      name: "Nguyễn Thị Mai",
+      role: "Runner",
+      location: "Hà Nội",
+      content:
+        "Tham gia Vietnam Student Marathon giúp mình có thêm động lực tập luyện hàng ngày và kết nối với rất nhiều bạn bè cùng đam mê.",
+      avatar: "🏃‍♀️",
+      rating: 5,
     },
     {
       id: 2,
-      name: "Anh Vũ Minh Tâm",
-      role: "Tình nguyện viên",
-      location: "Hà Nội",
-      content: "Tham gia hoạt động tình nguyện với F Foundation là trải nghiệm tuyệt vời nhất trong đời tôi. Được góp sức mình để giúp đỡ các em nhỏ vùng cao thật ý nghĩa.",
-      avatar: "👨‍💼",
-      rating: 5
+      name: "Trần Hoàng Nam",
+      role: "Thành viên CLB chạy bộ UEH",
+      location: "TP. HCM",
+      content:
+        "Không khí sôi động và tinh thần đồng đội của giải chạy khiến mình vô cùng hào hứng. Đây thực sự là ngày hội thể thao tuyệt vời!",
+      avatar: "🏃‍♂️",
+      rating: 5,
     },
     {
       id: 3,
-      name: "Cô Lê Thu Hương",
-      role: "Giáo viên",
-      location: "Điện Biên",
-      content: "Các dự án của F Foundation không chỉ hỗ trợ cơ sở vật chất mà còn mang đến hy vọng cho cả cộng đồng. Các em học sinh rất háo hức đến trường mỗi ngày.",
-      avatar: "👩‍🏫",
-      rating: 5
-    }
+      name: "Phạm Quỳnh Anh",
+      role: "Tình nguyện viên",
+      location: "Đà Nẵng",
+      content:
+        "Hỗ trợ sự kiện Vietnam Student Marathon giúp mình học hỏi nhiều kỹ năng tổ chức và lan tỏa tinh thần rèn luyện sức khỏe đến cộng đồng.",
+      avatar: "🤝",
+      rating: 5,
+    },
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-warmth-soft to-background">
+    <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
       <div className="container mx-auto px-6">
-        {/* Header */}
+        {/* Tiêu đề */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-earth mb-6">
-            Câu chuyện thật
+          <h2 className="text-4xl md:text-5xl font-bold text-blue-700 mb-6">
+            Câu Chuyện Từ Người Tham Gia
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Những chia sẻ chân thành từ người hưởng lợi, tình nguyện viên và đối tác
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Chia sẻ cảm nhận từ các runner, tình nguyện viên và câu lạc bộ đồng hành
           </p>
         </div>
 
-        {/* Testimonials Grid */}
+        {/* Lời chia sẻ */}
         <div className="grid lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <Card 
+          {testimonials.map((testimonial) => (
+            <Card
               key={testimonial.id}
-              className="bg-card shadow-soft border-0 hover:shadow-warm transition-all duration-500 hover:scale-105 relative overflow-hidden"
+              className="bg-white shadow-md border-0 hover:shadow-lg transition-all duration-500 hover:scale-105 relative overflow-hidden"
             >
-              {/* Quote Icon */}
               <div className="absolute top-4 right-4 opacity-10">
-                <Quote className="w-12 h-12 text-hope" />
+                <Quote className="w-12 h-12 text-blue-500" />
               </div>
 
               <CardContent className="p-8">
                 {/* Rating */}
                 <div className="flex items-center mb-4">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-warmth fill-current" />
+                    <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
                   ))}
                 </div>
 
-                {/* Content */}
-                <blockquote className="text-muted-foreground leading-relaxed mb-6 relative z-10">
-                  "{testimonial.content}"
+                {/* Nội dung */}
+                <blockquote className="text-gray-700 leading-relaxed mb-6 relative z-10">
+                  “{testimonial.content}”
                 </blockquote>
 
-                {/* Author Info */}
+                {/* Thông tin người chia sẻ */}
                 <div className="flex items-center">
-                  <div className="text-3xl mr-4">
-                    {testimonial.avatar}
-                  </div>
+                  <div className="text-3xl mr-4">{testimonial.avatar}</div>
                   <div>
-                    <div className="font-bold text-earth">
+                    <div className="font-bold text-blue-700">
                       {testimonial.name}
                     </div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-sm text-gray-600">
                       {testimonial.role}
                     </div>
-                    <div className="text-sm text-hope">
+                    <div className="text-sm text-blue-500">
                       📍 {testimonial.location}
                     </div>
                   </div>
@@ -92,49 +95,41 @@ const TestimonialsSection = () => {
           ))}
         </div>
 
-        {/* Impact Stats */}
-        <div className="mt-16 bg-gradient-to-r from-hope/10 to-warmth/20 rounded-2xl p-8">
+        {/* Số liệu ấn tượng */}
+        <div className="mt-16 bg-gradient-to-r from-blue-100 to-blue-50 rounded-2xl p-8">
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-earth mb-2">
-              Tác động tích cực
+            <h3 className="text-2xl font-bold text-blue-700 mb-2">
+              Thống Kê Ấn Tượng
             </h3>
-            <p className="text-muted-foreground">
-              Những con số nói lên hiệu quả hoạt động của chúng tôi
+            <p className="text-gray-600">
+              Những con số nổi bật từ giải chạy cộng đồng
             </p>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-hope mb-2">
-                98%
+              <div className="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">
+                5,000+
               </div>
-              <div className="text-sm text-muted-foreground">
-                Hài lòng với dự án
-              </div>
+              <div className="text-sm text-gray-600">Runner tham gia</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-hope mb-2">
-                500+
+              <div className="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">
+                200+
               </div>
-              <div className="text-sm text-muted-foreground">
-                Tình nguyện viên
-              </div>
+              <div className="text-sm text-gray-600">CLB chạy bộ đồng hành</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-hope mb-2">
+              <div className="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">
                 15
               </div>
-              <div className="text-sm text-muted-foreground">
-                Tỉnh/Thành phố
-              </div>
+              <div className="text-sm text-gray-600">Tỉnh/Thành phố tổ chức</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-hope mb-2">
+              <div className="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">
                 100%
               </div>
-              <div className="text-sm text-muted-foreground">
-                Minh bạch tài chính
-              </div>
+              <div className="text-sm text-gray-600">Tinh thần thể thao</div>
             </div>
           </div>
         </div>

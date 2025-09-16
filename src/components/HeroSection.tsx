@@ -33,7 +33,8 @@ const HeroSection = () => {
             "Chúng tôi gieo hạt yêu thương"
           </p>
           <p className="text-lg md:text-xl opacity-90">
-            Bạn là người tưới nước cho tương lai tươi sáng
+            “Mỗi sự đóng góp của bạn là giọt nước mát lành, tưới cho tương lai tươi sáng của trẻ em và cộng đồng.”
+
           </p>
         </div>
         
@@ -52,15 +53,15 @@ const HeroSection = () => {
         {/* Statistics */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in [animation-delay:0.9s]">
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-warmth mb-2">20,000+</div>
-            <div className="text-white/90">Trẻ em được hỗ trợ</div>
+            <div className="text-3xl md:text-4xl font-bold text-warmth mb-2">1 500+</div>
+            <div className="text-white/90">Sinh viên tham gia </div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-warmth mb-2">50+</div>
-            <div className="text-white/90">Dự án hoàn thành</div>
+            <div className="text-3xl md:text-4xl font-bold text-warmth mb-2">3</div>
+            <div className="text-white/90">Giải chạy bộ </div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-warmth mb-2">8</div>
+            <div className="text-3xl md:text-4xl font-bold text-warmth mb-2">3</div>
             <div className="text-white/90">Năm đồng hành</div>
           </div>
         </div>

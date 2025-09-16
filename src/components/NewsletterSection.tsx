@@ -9,19 +9,19 @@ const NewsletterSection = () => {
   const benefits = [
     {
       icon: Newspaper,
-      title: "Tin tức mới nhất",
-      description: "Cập nhật tiến độ dự án và hoạt động"
+      title: "Lịch giải & sự kiện",
+      description: "Cập nhật nhanh các giải chạy và hoạt động rèn luyện mới nhất",
     },
     {
       icon: Heart,
-      title: "Câu chuyện cảm động",
-      description: "Những câu chuyện thực tế từ người thụ hưởng"
+      title: "Câu chuyện truyền cảm hứng",
+      description: "Những trải nghiệm đáng nhớ từ cộng đồng runner khắp nơi",
     },
     {
       icon: Users,
-      title: "Cơ hội tình nguyện",
-      description: "Thông báo về các hoạt động sắp tới"
-    }
+      title: "Cơ hội tham gia CLB",
+      description: "Thông tin các buổi training, group run, meetup",
+    },
   ];
 
   return (
@@ -31,10 +31,11 @@ const NewsletterSection = () => {
           {/* Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-earth mb-6">
-              Đăng ký nhận tin
+              Đăng ký nhận bản tin Runner
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Tham gia cộng đồng F Foundation để nhận thông tin mới nhất và cơ hội đóng góp
+              Tham gia cộng đồng yêu chạy bộ để không bỏ lỡ giải đấu, sự kiện và
+              kinh nghiệm luyện tập hữu ích mỗi tuần.
             </p>
           </div>
 
@@ -42,9 +43,9 @@ const NewsletterSection = () => {
             {/* Benefits */}
             <div>
               <h3 className="text-2xl font-bold text-earth mb-6">
-                Tại sao nên đăng ký?
+                Vì sao bạn nên đăng ký?
               </h3>
-              
+
               <div className="space-y-6">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start space-x-4">
@@ -66,10 +67,12 @@ const NewsletterSection = () => {
               <div className="mt-8 p-6 bg-gradient-to-r from-hope/10 to-warmth/20 rounded-lg">
                 <div className="flex items-center space-x-3 mb-2">
                   <Mail className="w-5 h-5 text-hope" />
-                  <span className="font-medium text-earth">Đã có 5,000+ người đăng ký</span>
+                  <span className="font-medium text-earth">
+                    Hơn 5,000 runner đã theo dõi
+                  </span>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Tham gia cộng đồng những người quan tâm đến hoạt động xã hội
+                  Cùng nhau lan tỏa tinh thần khỏe mạnh và năng động mỗi ngày
                 </p>
               </div>
             </div>
@@ -87,7 +90,7 @@ const NewsletterSection = () => {
                     <Label htmlFor="name" className="text-earth font-medium">
                       Họ và tên *
                     </Label>
-                    <Input 
+                    <Input
                       id="name"
                       placeholder="Nhập họ và tên của bạn"
                       className="mt-2 border-border focus:border-hope"
@@ -99,7 +102,7 @@ const NewsletterSection = () => {
                     <Label htmlFor="email" className="text-earth font-medium">
                       Email *
                     </Label>
-                    <Input 
+                    <Input
                       id="email"
                       type="email"
                       placeholder="example@email.com"
@@ -112,7 +115,7 @@ const NewsletterSection = () => {
                     <Label htmlFor="phone" className="text-earth font-medium">
                       Số điện thoại
                     </Label>
-                    <Input 
+                    <Input
                       id="phone"
                       placeholder="0123 456 789"
                       className="mt-2 border-border focus:border-hope"
@@ -126,21 +129,30 @@ const NewsletterSection = () => {
                     </Label>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-2">
-                        <Checkbox id="donate" />
-                        <Label htmlFor="donate" className="text-sm text-muted-foreground">
-                          Thông tin quyên góp
+                        <Checkbox id="events" />
+                        <Label
+                          htmlFor="events"
+                          className="text-sm text-muted-foreground"
+                        >
+                          Lịch giải & sự kiện chạy bộ
                         </Label>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <Checkbox id="volunteer" />
-                        <Label htmlFor="volunteer" className="text-sm text-muted-foreground">
-                          Hoạt động tình nguyện
+                        <Checkbox id="training" />
+                        <Label
+                          htmlFor="training"
+                          className="text-sm text-muted-foreground"
+                        >
+                          Buổi training/long run hàng tuần
                         </Label>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <Checkbox id="updates" />
-                        <Label htmlFor="updates" className="text-sm text-muted-foreground">
-                          Cập nhật dự án
+                        <Checkbox id="stories" />
+                        <Label
+                          htmlFor="stories"
+                          className="text-sm text-muted-foreground"
+                        >
+                          Câu chuyện & kinh nghiệm từ runner
                         </Label>
                       </div>
                     </div>
@@ -149,27 +161,30 @@ const NewsletterSection = () => {
                   {/* Privacy Agreement */}
                   <div className="flex items-start space-x-2">
                     <Checkbox id="privacy" className="mt-1" />
-                    <Label htmlFor="privacy" className="text-sm text-muted-foreground leading-relaxed">
-                      Tôi đồng ý với chính sách bảo mật và cho phép F Foundation 
-                      gửi thông tin qua email
+                    <Label
+                      htmlFor="privacy"
+                      className="text-sm text-muted-foreground leading-relaxed"
+                    >
+                      Tôi đồng ý với chính sách bảo mật và cho phép nhận email
+                      từ Cộng đồng Runner.
                     </Label>
                   </div>
 
                   {/* Submit Button */}
-                  <Button 
-                    type="submit" 
-                    variant="hope" 
-                    size="lg" 
+                  <Button
+                    type="submit"
+                    variant="hope"
+                    size="lg"
                     className="w-full"
                   >
                     <Heart className="w-5 h-5 mr-2" />
-                    Tôi muốn đồng hành
+                    Tôi muốn tham gia
                   </Button>
                 </form>
 
                 {/* Footer Note */}
                 <p className="text-xs text-muted-foreground text-center mt-4">
-                  Chúng tôi cam kết không spam và bảo vệ thông tin cá nhân của bạn
+                  Chúng tôi cam kết bảo vệ dữ liệu và không gửi email rác.
                 </p>
               </CardContent>
             </Card>

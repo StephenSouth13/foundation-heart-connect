@@ -6,22 +6,22 @@ const AboutSection = () => {
     {
       icon: Heart,
       title: "Yêu thương",
-      description: "Lan tỏa tình yêu thương đến mọi miền đất nước"
+      description: "Gắn với trách nhiệm cộng đồng và nuôi dưỡng thế hệ trẻ."
     },
     {
       icon: Target,
       title: "Hiệu quả",
-      description: "Tối ưu hóa nguồn lực để tạo ra tác động tích cực nhất"
+      description: "Quản lý và sử dụng đúng mục tiêu để hỗ trợ tối đa các hoạt động giáo dục, khởi nghiệp và rèn luyện thể chất cho sinh viên."
     },
     {
       icon: Lightbulb,
       title: "Sáng tạo",
-      description: "Đổi mới phương pháp tiếp cận các vấn đề xã hội"
+      description: "Tập trung vào phương pháp giáo dục – khởi nghiệp – thể chất"
     },
     {
       icon: Globe,
       title: "Bền vững",
-      description: "Xây dựng giải pháp lâu dài cho cộng đồng"
+      description: "Mô hình tài chính và phát triển lâu dài cộng đồng."
     }
   ];
 
@@ -34,8 +34,7 @@ const AboutSection = () => {
             Về F Foundation
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Từ năm 2015, chúng tôi đã đồng hành cùng hơn 20.000 trẻ em vùng cao, 
-            mang đến hy vọng và cơ hội phát triển cho các cộng đồng khó khăn trên khắp Việt Nam.
+            “Từ năm 2023, Quỹ Tương Lai Việt Nam (FFVN) được thành lập nhằm hỗ trợ thế hệ trẻ Việt Nam thông qua giáo dục thực hành, khởi nghiệp sáng tạo, và các sáng kiến cộng đồng thiết thực.”
           </p>
         </div>
 
@@ -45,11 +44,11 @@ const AboutSection = () => {
             <CardContent className="p-8">
               <h3 className="text-2xl font-bold text-earth mb-4">Sứ mệnh</h3>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                Tạo ra những thay đổi tích cực và bền vững trong cuộc sống của trẻ em và 
-                cộng đồng thông qua các chương trình giáo dục, y tế và bảo vệ môi trường.
+                FFVN tạo điều kiện cho học sinh - sinh viên được giáo dục thực hành, hỗ trợ khởi nghiệp, và 
+                thúc đẩy các hoạt động xã hội ý nghĩa nhằm phát triển toàn diện thế hệ trẻ Việt Nam.
               </p>
               <div className="text-hope font-semibold">
-                "Mỗi hành động nhỏ đều có thể tạo nên sự khác biệt lớn"
+                 “Những bước đi nhỏ hôm nay tạo nền tảng cho thành công ngày mai.”
               </div>
             </CardContent>
           </Card>
@@ -58,11 +57,20 @@ const AboutSection = () => {
             <CardContent className="p-8">
               <h3 className="text-2xl font-bold text-earth mb-4">Tầm nhìn</h3>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                Trở thành tổ chức phi lợi nhuận hàng đầu Việt Nam, góp phần xây dựng 
-                một xã hội công bằng nơi mọi trẻ em đều có cơ hội phát triển toàn diện.
+                Hỗ trợ sinh viên, học sinh thông qua các chương trình học tập thực tiễn.
+
+
+              Đầu tư vào dự án khởi nghiệp có yếu tố giáo dục, công nghệ, văn hóa.
+
+
+              Tổ chức các hoạt động thể thao – cộng đồng, nổi bật là Vietnam Student Marathon (VSM).
+
+
+              Truyền cảm hứng học để làm, học để phát triển, học để thay đổi.
+
               </p>
               <div className="text-hope font-semibold">
-                "Tương lai tươi sáng cho mọi trẻ em Việt Nam"
+                “ Nâng bước sinh viên Việt vươn xa.”
               </div>
             </CardContent>
           </Card>
