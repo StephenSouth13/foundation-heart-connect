@@ -34,7 +34,7 @@ const AboutSection = () => {
             Future Fund VietNam
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            “Từ năm 2023, Quỹ Tương Lai Việt Nam (FFVN) được thành lập nhằm hỗ trợ thế hệ trẻ Việt Nam thông qua giáo dục thực hành, khởi nghiệp sáng tạo, và các sáng kiến cộng đồng thiết thực.”
+            “Từ năm 2021, Quỹ Tương Lai Việt Nam (FFVN) được thành lập nhằm hỗ trợ thế hệ trẻ Việt Nam thông qua giáo dục thực hành, khởi nghiệp sáng tạo, và các sáng kiến cộng đồng thiết thực.”
           </p>
         </div>
 
