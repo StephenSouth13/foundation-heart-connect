@@ -28,6 +28,17 @@ const partners: Partner[] = [
     logo: "/Smar.png",
     website: "https://smar.vn",
   },
+  {
+    name: "ACTION Media",
+    logo: "/LOGO-ACTION.png",
+    website: "#",
+  },
+  {
+    name: "Học Kỳ Doanh Nghiệp",
+    logo: "/HKDN.png",
+    website: "#",
+  },
+
 ];
 
 export default function PartnersSection() {
@@ -36,12 +47,11 @@ export default function PartnersSection() {
       <div className="container mx-auto px-4 text-center">
         {/* Tiêu đề */}
         <h2 className="text-4xl font-extrabold text-gray-800 mb-4 tracking-tight">
-          Đối Tác Chạy Bộ Cộng Đồng
+          Các Dự Án Cộng Đồng
         </h2>
         <p className="text-gray-600 max-w-2xl mx-auto mb-14 leading-relaxed">
-          Chúng tôi tự hào đồng hành cùng các câu lạc bộ và tổ chức chạy bộ để
-          lan tỏa tinh thần rèn luyện sức khỏe, kết nối cộng đồng và truyền cảm
-          hứng vận động tích cực.
+          Future Fund Vietnam (FFVN) đầu tư vào các dự án cộng đồng nhằm trao quyền cho giới trẻ, giúp các bạn phát triển kỹ năng, 
+          nâng cao sức khỏe và lan tỏa giá trị tích cực cho xã hội.
         </p>
 
         {/* Lưới logo */}

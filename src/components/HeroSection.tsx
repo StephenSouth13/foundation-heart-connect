@@ -57,21 +57,21 @@ const HeroSection = () => {
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in [animation-delay:0.9s]">
           <div className="text-center">
             <div className="text-3xl md:text-4xl font-bold text-warmth mb-2">
-              1 500+
+              30.000
             </div>
             <div className="text-white/90">Sinh viên tham gia</div>
           </div>
           <div className="text-center">
             <div className="text-3xl md:text-4xl font-bold text-warmth mb-2">
-              3
+              10
             </div>
-            <div className="text-white/90">Giải chạy bộ</div>
+            <div className="text-white/90">Dự án xã hội</div>
           </div>
           <div className="text-center">
             <div className="text-3xl md:text-4xl font-bold text-warmth mb-2">
               3
             </div>
-            <div className="text-white/90">Năm đồng hành</div>
+            <div className="text-white/90">Giải Marathon</div>
           </div>
         </div>
       </div>
