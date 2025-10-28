@@ -31,7 +31,7 @@ const NewsletterSection = () => {
           {/* Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-earth mb-6">
-              Đăng ký nhận bản tin Runner
+              Đăng ký thông tin liên hệ
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Tham gia cộng đồng yêu chạy bộ để không bỏ lỡ giải đấu, sự kiện và

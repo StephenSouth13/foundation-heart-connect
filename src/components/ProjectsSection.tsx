@@ -95,20 +95,7 @@ const ProjectsSection = () => {
                   {project.stats}
                 </div>
 
-                {/* Progress Bar */}
-                <div className="mb-4">
-                  <div className="flex justify-between text-sm mb-1">
-                    <span className="text-muted-foreground">Tiến độ</span>
-                    <span className="text-hope font-medium">{project.completed}%</span>
-                  </div>
-                  <div className="w-full bg-secondary rounded-full h-2">
-                    <div 
-                      className="bg-gradient-to-r from-hope to-hope-light h-2 rounded-full transition-all duration-1000"
-                      style={{ width: `${project.completed}%` }}
-                    ></div>
-                  </div>
-                </div>
-
+                
                 {/* Learn More Link */}
                 <Button 
                   variant="ghost" 

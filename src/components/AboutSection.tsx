@@ -10,13 +10,13 @@ const AboutSection = () => {
     },
     {
       icon: Target,
-      title: "Hiệu quả",
+      title: "Phát triển",
       description: "Quản lý và sử dụng đúng mục tiêu để hỗ trợ tối đa các hoạt động giáo dục, khởi nghiệp và rèn luyện thể chất cho sinh viên."
     },
     {
       icon: Lightbulb,
       title: "Sáng tạo",
-      description: "Tập trung vào phương pháp giáo dục – khởi nghiệp – thể chất"
+      description: "Khuyến khích tư duy đổi mới, dám thử – dám làm để tạo ra giải pháp thiết thực cho cộng đồng."
     },
     {
       icon: Globe,

@@ -5,59 +5,58 @@ import { Heart, Clock, Share2, ArrowRight } from "lucide-react";
 const HelpSection = () => {
   const helpMethods = [
     {
-      icon: Heart,
-      title: "Quyên góp",
-      description: "Mỗi đồng góp đều tạo nên sự khác biệt lớn trong cuộc sống của các em nhỏ",
+      icon: Heart, // Giữ icon, có thể cân nhắc thay bằng icon phù hợp hơn như Users, Handshake, Connect
+      title: "Đồng hành cùng phát triển",
+      description: "Tạo môi trường để sinh viên học hỏi, thực hành và trưởng thành qua các dự án thực tế.",
       features: [
-        "Quyên góp một lần hoặc hàng tháng",
-        "Theo dõi tiến độ sử dụng",
-        "Báo cáo minh bạch định kỳ",
-        "Chứng nhận từ thiện hợp lệ"
+        "Theo dõi tiến độ triển khai dự án sinh viên",
+        "Hướng dẫn kỹ năng và tư duy đổi mới sáng tạo",
+        "Giới thiệu dự án sinh viên đến doanh nghiệp, tổ chức",
+        "Kết nối nguồn lực hỗ trợ triển khai cho dự án thật"
       ],
-      buttonText: "Ủng hộ ngay",
+      buttonText: "Đăng ký đồng hành",
       buttonVariant: "hope" as const,
       bgGradient: "from-hope/10 to-hope-light/20"
     },
     {
-      icon: Clock,
-      title: "Tình nguyện",
-      description: "Tham gia trực tiếp vào các hoạt động, mang đến giá trị thực tế cho cộng đồng",
+      icon: Clock, // Giữ icon, có thể cân nhắc thay bằng icon phù hợp hơn như BookOpen, Lightbulb, UserCheck
+      title: "Chia sẻ tri thức",
+      description: "Đồng hành cùng sinh viên qua những buổi chia sẻ, huấn luyện và mentoring chuyên môn.",
       features: [
-        "Dạy học tại vùng cao",
-        "Tham gia xây dựng trường học",
-        "Hoạt động y tế cộng đồng",
-        "Chương trình bảo vệ môi trường"
+        "Mentoring trực tiếp, cố vấn phát triển cá nhân/dự án",
+        "Góp ý, phản hồi giúp hoàn thiện sản phẩm",
+        "Cùng sinh viên ứng dụng kiến thức vào giải pháp thực tế",
+        "Lan tỏa giá trị giáo dục thực hành"
       ],
-      buttonText: "Đăng ký tình nguyện",
+      buttonText: "Đăng ký chia sẻ tri thức",
       buttonVariant: "warm" as const,
       bgGradient: "from-warmth/20 to-warmth-soft/30"
     },
     {
       icon: Share2,
-      title: "Chia sẻ thông tin",
-      description: "Lan tỏa tinh thần yêu thương đến nhiều người hơn qua các kênh truyền thông",
+      title: "Kết nối cộng đồng",
+      description: "Lan tỏa tinh thần yêu thương, truyền thông những câu chuyện thay đổi tích cực và tổ chức sự kiện giáo dục.",
       features: [
-        "Chia sẻ trên mạng xã hội",
-        "Kể câu chuyện cho bạn bè",
-        "Tham gia sự kiện gây quỹ",
-        "Trở thành đại sứ thương hiệu"
+        "Cùng tổ chức các sự kiện giáo dục và phát triển cộng đồng",
+        "Truyền thông, lan tỏa những câu chuyện thay đổi tích cực",
+        "Ghi nhận, lan tỏa các kết quả thực hành tốt",
+        "Lan tỏa tinh thần phát triển bền vững"
       ],
-      buttonText: "Chia sẻ ngay",
+      buttonText: "Tham gia kết nối cộng đồng",
       buttonVariant: "outline" as const,
       bgGradient: "from-secondary/30 to-accent/20"
     }
   ];
-
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-earth mb-6">
-            Cách bạn có thể giúp đỡ
+            Cách bạn có thể đồng hành cùng sinh viên
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Có nhiều cách để bạn có thể đồng hành cùng chúng tôi tạo nên những thay đổi tích cực
+            Hãy đồng hành cùng chúng tôi để được học hỏi, trải nghiệm và mang đến những thay đổi tích cực cho cộng đồng.
           </p>
         </div>
 
@@ -113,11 +112,12 @@ const HelpSection = () => {
         {/* Emergency Call to Action */}
         <div className="bg-gradient-to-r from-hope to-hope-light rounded-2xl p-8 text-center text-white shadow-glow">
           <h3 className="text-2xl md:text-3xl font-bold mb-4">
-            Trẻ em vùng cao đang cần sự giúp đỡ khẩn cấp
+            Sinh viên cần sự đồng hành để trưởng thành trong môi trường thật
+
           </h3>
           <p className="text-lg mb-6 opacity-90 max-w-2xl mx-auto">
-            Mùa đông đang đến, các em nhỏ cần áo ấm, sách vở và đèn học. 
-            Hành động ngay hôm nay để mang đến hy vọng cho các em.
+            Tại Future Fund Vietnam mỗi hành trình học tập là một dự án thật – nơi sinh viên được học, làm và cống hiến cùng cộng đồng.
+ Hãy cùng chúng tôi tạo nên những trải nghiệm mang giá trị thật cho thế hệ trẻ.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="warm" size="lg" className="text-lg px-8">
