@@ -1,6 +1,3 @@
-// src/components/TestimonialsSection.tsx
-"use client";
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Quote, Star } from "lucide-react";
 
@@ -9,85 +6,65 @@ const TestimonialsSection = () => {
     {
       id: 1,
       name: "Nguyễn Thị Mai",
-      role: "Runner",
+      role: "Sinh viên Học Kỳ Doanh Nghiệp",
       location: "Hà Nội",
-      content:
-        "Tham gia Vietnam Student Marathon giúp mình có thêm động lực tập luyện hàng ngày và kết nối với rất nhiều bạn bè cùng đam mê.",
-      avatar: "🏃‍♀️",
+      content: "Chương trình giúp mình được thực hành ngay tại doanh nghiệp, hiểu rõ hơn về ngành nghề mình theo đuổi và tự tin hơn khi ra trường.",
+      avatar: "🎓",
       rating: 5,
     },
     {
       id: 2,
       name: "Trần Hoàng Nam",
-      role: "Thành viên CLB chạy bộ UEH",
+      role: "Founder dự án khởi nghiệp",
       location: "TP. HCM",
-      content:
-        "Không khí sôi động và tinh thần đồng đội của giải chạy khiến mình vô cùng hào hứng. Đây thực sự là ngày hội thể thao tuyệt vời!",
-      avatar: "🏃‍♂️",
+      content: "Nhờ sự hỗ trợ của FFVN, nhóm mình đã biến ý tưởng thành sản phẩm thực tế và được kết nối với các nhà đầu tư tiềm năng.",
+      avatar: "💡",
       rating: 5,
     },
     {
       id: 3,
       name: "Phạm Quỳnh Anh",
-      role: "Tình nguyện viên",
+      role: "Tình nguyện viên cộng đồng",
       location: "Đà Nẵng",
-      content:
-        "Hỗ trợ sự kiện Vietnam Student Marathon giúp mình học hỏi nhiều kỹ năng tổ chức và lan tỏa tinh thần rèn luyện sức khỏe đến cộng đồng.",
+      content: "Tham gia các hoạt động cộng đồng của FFVN giúp mình phát triển kỹ năng lãnh đạo và cảm nhận được giá trị của sự sẻ chia.",
       avatar: "🤝",
       rating: 5,
     },
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
+    <section id="testimonials" className="py-20 bg-gradient-to-b from-warmth-soft to-background">
       <div className="container mx-auto px-6">
-        {/* Tiêu đề */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-blue-700 mb-6">
-            Câu Chuyện Từ Người Tham Gia
+          <h2 className="text-4xl md:text-5xl font-bold text-earth mb-6 animate-fade-in">
+            Câu Chuyện Từ Cộng Đồng
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Chia sẻ cảm nhận từ các runner, tình nguyện viên và câu lạc bộ đồng hành
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in [animation-delay:0.2s]">
+            Chia sẻ từ sinh viên, tình nguyện viên và các bạn trẻ đã đồng hành cùng FFVN
           </p>
         </div>
 
-        {/* Lời chia sẻ */}
         <div className="grid lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial) => (
-            <Card
-              key={testimonial.id}
-              className="bg-white shadow-md border-0 hover:shadow-lg transition-all duration-500 hover:scale-105 relative overflow-hidden"
-            >
-              <div className="absolute top-4 right-4 opacity-10">
-                <Quote className="w-12 h-12 text-blue-500" />
+          {testimonials.map((t) => (
+            <Card key={t.id} className="bg-card shadow-soft border-0 hover:shadow-warm transition-all duration-500 hover:scale-105 hover:-translate-y-2 relative overflow-hidden group">
+              <div className="absolute top-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Quote className="w-12 h-12 text-hope" />
               </div>
-
               <CardContent className="p-8">
-                {/* Rating */}
                 <div className="flex items-center mb-4">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
+                  {Array.from({ length: t.rating }).map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-warmth fill-current" />
                   ))}
                 </div>
-
-                {/* Nội dung */}
-                <blockquote className="text-gray-700 leading-relaxed mb-6 relative z-10">
-                  “{testimonial.content}”
+                <blockquote className="text-muted-foreground leading-relaxed mb-6 relative z-10">
+                  "{t.content}"
                 </blockquote>
-
-                {/* Thông tin người chia sẻ */}
                 <div className="flex items-center">
-                  <div className="text-3xl mr-4">{testimonial.avatar}</div>
+                  <div className="text-3xl mr-4">{t.avatar}</div>
                   <div>
-                    <div className="font-bold text-blue-700">
-                      {testimonial.name}
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      {testimonial.role}
-                    </div>
-                    <div className="text-sm text-blue-500">
-                      📍 {testimonial.location}
-                    </div>
+                    <div className="font-bold text-earth">{t.name}</div>
+                    <div className="text-sm text-muted-foreground">{t.role}</div>
+                    <div className="text-sm text-hope">📍 {t.location}</div>
                   </div>
                 </div>
               </CardContent>
@@ -95,41 +72,27 @@ const TestimonialsSection = () => {
           ))}
         </div>
 
-        {/* Số liệu ấn tượng */}
-        <div className="mt-16 bg-gradient-to-r from-blue-100 to-blue-50 rounded-2xl p-8">
+        <div className="mt-16 bg-gradient-to-r from-hope/10 to-warmth/20 rounded-2xl p-8">
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-blue-700 mb-2">
-              Thống Kê Ấn Tượng
-            </h3>
-            <p className="text-gray-600">
-              Những con số nổi bật từ giải chạy cộng đồng
-            </p>
+            <h3 className="text-2xl font-bold text-earth mb-2">Tác Động Của FFVN</h3>
+            <p className="text-muted-foreground">Những con số kể câu chuyện về sự thay đổi</p>
           </div>
-
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">
-                5,000+
-              </div>
-              <div className="text-sm text-gray-600">Runner tham gia</div>
+              <div className="text-3xl lg:text-4xl font-bold text-hope mb-2">20,000+</div>
+              <div className="text-sm text-muted-foreground">Sinh viên thụ hưởng</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">
-                200+
-              </div>
-              <div className="text-sm text-gray-600">CLB chạy bộ đồng hành</div>
+              <div className="text-3xl lg:text-4xl font-bold text-hope mb-2">50+</div>
+              <div className="text-sm text-muted-foreground">Dự án triển khai</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">
-                15
-              </div>
-              <div className="text-sm text-gray-600">Tỉnh/Thành phố tổ chức</div>
+              <div className="text-3xl lg:text-4xl font-bold text-hope mb-2">15+</div>
+              <div className="text-sm text-muted-foreground">Tỉnh thành phủ sóng</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">
-                100%
-              </div>
-              <div className="text-sm text-gray-600">Tinh thần thể thao</div>
+              <div className="text-3xl lg:text-4xl font-bold text-hope mb-2">100+</div>
+              <div className="text-sm text-muted-foreground">Đối tác đồng hành</div>
             </div>
           </div>
         </div>

@@ -43,15 +43,14 @@ const partners: Partner[] = [
 
 export default function PartnersSection() {
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 via-white to-gray-50">
+    <section id="partners" className="py-20 bg-gradient-to-b from-warmth-soft via-background to-warmth-soft">
       <div className="container mx-auto px-4 text-center">
         {/* Tiêu đề */}
-        <h2 className="text-4xl font-extrabold text-gray-800 mb-4 tracking-tight">
+        <h2 className="text-4xl font-extrabold text-earth mb-4 tracking-tight">
           Các Dự Án Cộng Đồng
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-14 leading-relaxed">
-          Future Fund Vietnam (FFVN) đầu tư vào các dự án cộng đồng nhằm trao quyền cho giới trẻ, giúp các bạn phát triển kỹ năng, 
-          nâng cao sức khỏe và lan tỏa giá trị tích cực cho xã hội.
+        <p className="text-muted-foreground max-w-2xl mx-auto mb-14 leading-relaxed">
+          FFVN đầu tư vào các dự án cộng đồng nhằm trao quyền cho giới trẻ, giúp các bạn phát triển kỹ năng và lan tỏa giá trị tích cực.
         </p>
 
         {/* Lưới logo */}
@@ -64,14 +63,14 @@ export default function PartnersSection() {
               rel="noopener noreferrer"
               className="group flex flex-col items-center"
             >
-              <div className="w-40 h-24 flex items-center justify-center bg-white shadow-md rounded-xl p-4 transition duration-300 transform group-hover:scale-105 group-hover:shadow-xl">
+              <div className="w-40 h-24 flex items-center justify-center bg-card shadow-soft rounded-xl p-4 transition duration-300 transform group-hover:scale-105 group-hover:shadow-warm">
                 <img
                   src={p.logo}
                   alt={p.name}
                   className="max-h-20 object-contain"
                 />
               </div>
-              <span className="mt-4 text-gray-700 font-medium group-hover:text-blue-600 transition-colors duration-300">
+              <span className="mt-4 text-earth font-medium group-hover:text-hope transition-colors duration-300">
                 {p.name}
               </span>
             </a>
