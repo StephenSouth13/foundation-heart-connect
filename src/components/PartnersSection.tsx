@@ -43,7 +43,7 @@ const partners: Partner[] = [
 
 export default function PartnersSection() {
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 via-white to-gray-50">
+    <section id="partners" className="py-20 bg-gradient-to-b from-warmth-soft via-background to-warmth-soft">
       <div className="container mx-auto px-4 text-center">
         {/* Tiêu đề */}
         <h2 className="text-4xl font-extrabold text-gray-800 mb-4 tracking-tight">
