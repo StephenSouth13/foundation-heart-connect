@@ -46,12 +46,11 @@ export default function PartnersSection() {
     <section id="partners" className="py-20 bg-gradient-to-b from-warmth-soft via-background to-warmth-soft">
       <div className="container mx-auto px-4 text-center">
         {/* Tiêu đề */}
-        <h2 className="text-4xl font-extrabold text-gray-800 mb-4 tracking-tight">
+        <h2 className="text-4xl font-extrabold text-earth mb-4 tracking-tight">
           Các Dự Án Cộng Đồng
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-14 leading-relaxed">
-          Future Fund Vietnam (FFVN) đầu tư vào các dự án cộng đồng nhằm trao quyền cho giới trẻ, giúp các bạn phát triển kỹ năng, 
-          nâng cao sức khỏe và lan tỏa giá trị tích cực cho xã hội.
+        <p className="text-muted-foreground max-w-2xl mx-auto mb-14 leading-relaxed">
+          FFVN đầu tư vào các dự án cộng đồng nhằm trao quyền cho giới trẻ, giúp các bạn phát triển kỹ năng và lan tỏa giá trị tích cực.
         </p>
 
         {/* Lưới logo */}
