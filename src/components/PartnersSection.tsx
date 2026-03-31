@@ -63,7 +63,7 @@ export default function PartnersSection() {
               rel="noopener noreferrer"
               className="group flex flex-col items-center"
             >
-              <div className="w-40 h-24 flex items-center justify-center bg-white shadow-md rounded-xl p-4 transition duration-300 transform group-hover:scale-105 group-hover:shadow-xl">
+              <div className="w-40 h-24 flex items-center justify-center bg-card shadow-soft rounded-xl p-4 transition duration-300 transform group-hover:scale-105 group-hover:shadow-warm">
                 <img
                   src={p.logo}
                   alt={p.name}
