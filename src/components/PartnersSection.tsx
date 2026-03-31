@@ -70,7 +70,7 @@ export default function PartnersSection() {
                   className="max-h-20 object-contain"
                 />
               </div>
-              <span className="mt-4 text-gray-700 font-medium group-hover:text-blue-600 transition-colors duration-300">
+              <span className="mt-4 text-earth font-medium group-hover:text-hope transition-colors duration-300">
                 {p.name}
               </span>
             </a>
