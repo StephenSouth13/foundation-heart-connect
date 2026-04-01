@@ -46,6 +46,7 @@ const defaultProjects = [
 
 const ProjectsSection = () => {
   const [projects, setProjects] = useState(defaultProjects);
+  const { ref, isVisible } = useScrollAnimation();
 
   useEffect(() => {
     const load = async () => {
