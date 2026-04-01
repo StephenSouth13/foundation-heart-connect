@@ -1,7 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Target, Lightbulb, Heart, Globe } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const AboutSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
   const values = [
     { icon: Heart, title: "Yêu thương", description: "Gắn với trách nhiệm cộng đồng và nuôi dưỡng thế hệ trẻ." },
     { icon: Target, title: "Phát triển", description: "Hỗ trợ tối đa các hoạt động giáo dục, khởi nghiệp và phát triển kỹ năng cho sinh viên." },
