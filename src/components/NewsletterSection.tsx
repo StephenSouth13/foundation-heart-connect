@@ -4,8 +4,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Mail, Heart, Users, Newspaper } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const NewsletterSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
   const benefits = [
     { icon: Newspaper, title: "Tin tức dự án", description: "Cập nhật các chương trình giáo dục, khởi nghiệp và cộng đồng mới nhất" },
     { icon: Heart, title: "Câu chuyện truyền cảm hứng", description: "Những hành trình thay đổi tích cực từ sinh viên và cộng đồng" },
