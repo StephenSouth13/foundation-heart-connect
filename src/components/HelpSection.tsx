@@ -1,8 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Heart, Clock, Share2, ArrowRight } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const HelpSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
   const helpMethods = [
     {
       icon: Heart, // Giữ icon, có thể cân nhắc thay bằng icon phù hợp hơn như Users, Handshake, Connect
