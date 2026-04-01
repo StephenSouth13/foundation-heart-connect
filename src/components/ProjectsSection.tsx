@@ -52,6 +52,7 @@ const ProjectsSection = () => {
         .from("projects")
         .select("*")
         .eq("published", true)
+        .order("display_order", { ascending: true })
         .order("created_at", { ascending: false })
         .limit(6);
       if (data && data.length > 0) {

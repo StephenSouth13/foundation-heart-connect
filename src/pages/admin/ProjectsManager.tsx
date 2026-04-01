@@ -16,6 +16,7 @@ const ProjectsManager = () => {
     const { data } = await supabase
       .from("projects")
       .select("*")
+      .order("display_order", { ascending: true })
       .order("created_at", { ascending: false });
     if (data) setProjects(data as any);
   };
@@ -39,7 +40,11 @@ const ProjectsManager = () => {
         const { error } = await supabase.from("projects").update(payload).eq("id", project.id);
         if (error) throw error;
       } else {
-        const { error } = await supabase.from("projects").insert(payload);
+        // New project gets highest order
+        const maxOrder = projects.length > 0
+          ? Math.max(...projects.map((p: any) => p.display_order ?? 0))
+          : 0;
+        const { error } = await supabase.from("projects").insert({ ...payload, display_order: maxOrder + 1 });
         if (error) throw error;
       }
       toast({ title: "Đã lưu dự án!" });
@@ -49,6 +54,20 @@ const ProjectsManager = () => {
       toast({ title: "Lỗi", description: error.message, variant: "destructive" });
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleReorder = async (reordered: Project[]) => {
+    setProjects(reordered);
+    try {
+      const updates = reordered.map((p, index) =>
+        supabase.from("projects").update({ display_order: index }).eq("id", p.id!)
+      );
+      await Promise.all(updates);
+      toast({ title: "Đã cập nhật thứ tự!" });
+    } catch {
+      toast({ title: "Lỗi cập nhật thứ tự", variant: "destructive" });
+      loadProjects();
     }
   };
 
@@ -80,6 +99,7 @@ const ProjectsManager = () => {
       onEdit={setEditing}
       onCreate={() => setEditing({ ...emptyProject })}
       onDelete={deleteProject}
+      onReorder={handleReorder}
     />
   );
 };
