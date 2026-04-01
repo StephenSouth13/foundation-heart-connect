@@ -1,5 +1,6 @@
 // src/components/PartnersSection.tsx
 import React from "react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 type Partner = {
   name: string;
