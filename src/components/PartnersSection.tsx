@@ -43,9 +43,10 @@ const partners: Partner[] = [
 ];
 
 export default function PartnersSection() {
+  const { ref, isVisible } = useScrollAnimation();
   return (
-    <section id="partners" className="py-20 bg-gradient-to-b from-warmth-soft via-background to-warmth-soft">
-      <div className="container mx-auto px-4 text-center">
+    <section id="partners" className="py-20 bg-gradient-to-b from-warmth-soft via-background to-warmth-soft" ref={ref}>
+      <div className={`container mx-auto px-4 text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         {/* Tiêu đề */}
         <h2 className="text-4xl font-extrabold text-earth mb-4 tracking-tight">
           Các Dự Án Cộng Đồng

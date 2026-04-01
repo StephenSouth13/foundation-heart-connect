@@ -50,8 +50,8 @@ const HelpSection = () => {
     }
   ];
   return (
-    <section id="help" className="py-20 bg-background">
-      <div className="container mx-auto px-6">
+    <section id="help" className="py-20 bg-background" ref={ref}>
+      <div className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-earth mb-6">

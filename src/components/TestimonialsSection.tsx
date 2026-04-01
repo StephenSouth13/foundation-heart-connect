@@ -35,8 +35,8 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-b from-warmth-soft to-background">
-      <div className="container mx-auto px-6">
+    <section id="testimonials" className="py-20 bg-gradient-to-b from-warmth-soft to-background" ref={ref}>
+      <div className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-earth mb-6 animate-fade-in">
             Câu Chuyện Từ Cộng Đồng

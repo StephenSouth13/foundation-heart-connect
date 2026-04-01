@@ -65,8 +65,8 @@ const ProjectsSection = () => {
   }, []);
 
   return (
-    <section id="projects" className="py-20 bg-background">
-      <div className="container mx-auto px-6">
+    <section id="projects" className="py-20 bg-background" ref={ref}>
+      <div className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-earth mb-6 animate-fade-in">Dự án nổi bật</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in [animation-delay:0.2s]">
