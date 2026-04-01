@@ -1,7 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Target, Lightbulb, Heart, Globe } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const AboutSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
   const values = [
     { icon: Heart, title: "Yêu thương", description: "Gắn với trách nhiệm cộng đồng và nuôi dưỡng thế hệ trẻ." },
     { icon: Target, title: "Phát triển", description: "Hỗ trợ tối đa các hoạt động giáo dục, khởi nghiệp và phát triển kỹ năng cho sinh viên." },
@@ -10,8 +12,8 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-background to-warmth-soft">
-      <div className="container mx-auto px-6">
+    <section id="about" className="py-20 bg-gradient-to-b from-background to-warmth-soft" ref={ref}>
+      <div className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-earth mb-6 animate-fade-in">
             Quỹ Tương Lai Việt Nam

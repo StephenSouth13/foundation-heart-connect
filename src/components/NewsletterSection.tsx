@@ -4,8 +4,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Mail, Heart, Users, Newspaper } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const NewsletterSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
   const benefits = [
     { icon: Newspaper, title: "Tin tức dự án", description: "Cập nhật các chương trình giáo dục, khởi nghiệp và cộng đồng mới nhất" },
     { icon: Heart, title: "Câu chuyện truyền cảm hứng", description: "Những hành trình thay đổi tích cực từ sinh viên và cộng đồng" },
@@ -13,8 +15,8 @@ const NewsletterSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-background to-warmth-soft">
-      <div className="container mx-auto px-6">
+    <section id="contact" className="py-20 bg-gradient-to-b from-background to-warmth-soft" ref={ref}>
+      <div className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-earth mb-6 animate-fade-in">Đăng ký nhận tin</h2>

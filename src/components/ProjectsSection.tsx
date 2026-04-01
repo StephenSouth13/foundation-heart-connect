@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Lightbulb, Users, ArrowRight } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { supabase } from "@/integrations/supabase/client";
 import educationProject from "@/assets/pic.png";
 import environmentProject from "@/assets/pic1.png";
@@ -45,6 +46,7 @@ const defaultProjects = [
 
 const ProjectsSection = () => {
   const [projects, setProjects] = useState(defaultProjects);
+  const { ref, isVisible } = useScrollAnimation();
 
   useEffect(() => {
     const load = async () => {
@@ -63,8 +65,8 @@ const ProjectsSection = () => {
   }, []);
 
   return (
-    <section id="projects" className="py-20 bg-background">
-      <div className="container mx-auto px-6">
+    <section id="projects" className="py-20 bg-background" ref={ref}>
+      <div className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-earth mb-6 animate-fade-in">Dự án nổi bật</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in [animation-delay:0.2s]">
