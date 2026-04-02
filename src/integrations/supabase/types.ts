@@ -56,6 +56,7 @@ export type Database = {
           display_order: number
           icon: string | null
           id: string
+          image_position: string
           image_url: string | null
           published: boolean | null
           slug: string
@@ -71,6 +72,7 @@ export type Database = {
           display_order?: number
           icon?: string | null
           id?: string
+          image_position?: string
           image_url?: string | null
           published?: boolean | null
           slug: string
@@ -86,6 +88,7 @@ export type Database = {
           display_order?: number
           icon?: string | null
           id?: string
+          image_position?: string
           image_url?: string | null
           published?: boolean | null
           slug?: string
@@ -104,6 +107,7 @@ export type Database = {
           subtitle: string | null
           title: string | null
           updated_at: string
+          visible: boolean
         }
         Insert: {
           content?: Json | null
@@ -113,6 +117,7 @@ export type Database = {
           subtitle?: string | null
           title?: string | null
           updated_at?: string
+          visible?: boolean
         }
         Update: {
           content?: Json | null
@@ -122,6 +127,7 @@ export type Database = {
           subtitle?: string | null
           title?: string | null
           updated_at?: string
+          visible?: boolean
         }
         Relationships: []
       }
