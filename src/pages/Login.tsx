@@ -1,31 +1,48 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Lock, Mail } from "lucide-react";
+import { Lock, Mail, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { signIn } = useAuth();
+  const [errorMsg, setErrorMsg] = useState("");
+  const { signIn, user, isAdmin, loading } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  // Redirect if already logged in as admin
+  useEffect(() => {
+    if (!loading && user && isAdmin) {
+      navigate("/admin");
+    }
+  }, [user, isAdmin, loading, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setErrorMsg("");
     try {
       await signIn(email, password);
+      // Wait a moment for auth state to update
+      toast({ title: "Đăng nhập thành công!" });
       navigate("/admin");
     } catch (error: any) {
+      const msg = error.message?.includes("Invalid login")
+        ? "Email hoặc mật khẩu không đúng. Vui lòng thử lại."
+        : error.message?.includes("Email not confirmed")
+        ? "Email chưa được xác nhận. Vui lòng kiểm tra hộp thư."
+        : error.message || "Đã xảy ra lỗi khi đăng nhập. Vui lòng thử lại.";
+      setErrorMsg(msg);
       toast({
         title: "Đăng nhập thất bại",
-        description: error.message || "Email hoặc mật khẩu không đúng",
+        description: msg,
         variant: "destructive",
       });
     } finally {
@@ -44,6 +61,12 @@ const Login = () => {
           <p className="text-muted-foreground">Quỹ Tương Lai Việt Nam (FFVN)</p>
         </CardHeader>
         <CardContent>
+          {errorMsg && (
+            <div className="mb-4 p-3 rounded-lg bg-destructive/10 border border-destructive/20 flex items-start gap-2">
+              <AlertCircle className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
+              <p className="text-sm text-destructive">{errorMsg}</p>
+            </div>
+          )}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
