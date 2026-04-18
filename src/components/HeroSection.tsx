@@ -28,16 +28,6 @@ const HeroSection = () => {
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in [animation-delay:0.6s]">
-          <Button variant="hero" size="lg" className="text-lg px-8 py-4 hover:scale-105 transition-transform">
-            <Heart className="w-5 h-5 mr-2" />
-            Ủng hộ ngay
-          </Button>
-          <Button variant="warm" size="lg" className="text-lg px-8 py-4 hover:scale-105 transition-transform">
-            <Users className="w-5 h-5 mr-2" />
-            Tham gia cùng chúng tôi
-          </Button>
-        </div>
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in [animation-delay:0.9s]">
           <div className="text-center">
