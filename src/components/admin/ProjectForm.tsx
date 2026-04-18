@@ -15,6 +15,7 @@ export interface Project {
   description: string;
   content: any;
   image_url: string;
+  image_position: string;
   category: string;
   stats: string;
   icon: string;
@@ -23,7 +24,7 @@ export interface Project {
 
 export const emptyProject: Project = {
   title: "", slug: "", description: "", content: null, image_url: "",
-  category: "", stats: "", icon: "BookOpen", published: false,
+  image_position: "center", category: "", stats: "", icon: "BookOpen", published: false,
 };
 
 export const slugify = (text: string) =>
@@ -134,16 +135,19 @@ const ProjectForm = ({ project, saving, onSave, onCancel }: ProjectFormProps) =>
           />
         </div>
 
-        {/* Cover Image */}
+        {/* Cover Image with position control */}
         <div>
           <Label>Ảnh bìa dự án</Label>
           <p className="text-xs text-muted-foreground mb-2">
-            Ảnh hiển thị ở banner đầu trang chi tiết dự án và danh sách dự án.
+            Ảnh hiển thị ở banner đầu trang chi tiết dự án và danh sách dự án. Chọn vị trí hiển thị phù hợp.
           </p>
           <ImageUpload
             value={editing.image_url}
             onChange={(url) => setEditing({ ...editing, image_url: url })}
             folder="projects"
+            position={editing.image_position}
+            onPositionChange={(pos) => setEditing({ ...editing, image_position: pos })}
+            showPosition
           />
         </div>
 

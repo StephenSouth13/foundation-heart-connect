@@ -18,7 +18,7 @@ const ProjectsManager = () => {
       .select("*")
       .order("display_order", { ascending: true })
       .order("created_at", { ascending: false });
-    if (data) setProjects(data as any);
+    if (data) setProjects(data.map((d: any) => ({ ...d, image_position: d.image_position || "center" })));
   };
 
   const saveProject = async (project: Project) => {
@@ -30,6 +30,7 @@ const ProjectsManager = () => {
         description: project.description,
         content: project.content,
         image_url: project.image_url,
+        image_position: project.image_position,
         category: project.category,
         stats: project.stats,
         icon: project.icon,
@@ -40,7 +41,6 @@ const ProjectsManager = () => {
         const { error } = await supabase.from("projects").update(payload).eq("id", project.id);
         if (error) throw error;
       } else {
-        // New project gets highest order
         const maxOrder = projects.length > 0
           ? Math.max(...projects.map((p: any) => p.display_order ?? 0))
           : 0;
