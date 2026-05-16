@@ -13,13 +13,14 @@ export interface Project {
   title: string;
   slug: string;
   description: string;
-  content: any;
+  content?: any;
   image_url: string;
   image_position: string;
   category: string;
   stats: string;
   icon: string;
   published: boolean;
+  display_order?: number;
 }
 
 export const emptyProject: Project = {
