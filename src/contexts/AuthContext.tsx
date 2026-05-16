@@ -1,3 +1,4 @@
+// D:\FF Foundation\foundation-heart-connect\src\contexts\AuthContext.tsx
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { User, Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
@@ -19,53 +20,38 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  // Hàm helper đọc role từ app_metadata của JWT thay vì query Database
+  const extractAdminStatus = (currentSession: Session | null): boolean => {
+    if (!currentSession?.user) return false;
+    
+    // Đọc trường custom claim 'user_role' mà trigger DB đã ghi vào JWT mã hóa
+    const role = currentSession.user.app_metadata?.user_role;
+    return role === "admin";
+  };
+
   useEffect(() => {
     let mounted = true;
 
-    const checkAdminRole = async (userId: string) => {
-      try {
-        const { data } = await supabase
-          .from("user_roles")
-          .select("role")
-          .eq("user_id", userId)
-          .eq("role", "admin")
-          .maybeSingle();
-        if (mounted) setIsAdmin(!!data);
-      } catch {
-        if (mounted) setIsAdmin(false);
-      }
-    };
-
-    // 1. Set up listener FIRST (important: no await in callback)
+    // 1. Thiết lập Listener lắng nghe trạng thái thay đổi Auth thực thời
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (_event, newSession) => {
         if (!mounted) return;
+        
         setSession(newSession);
         setUser(newSession?.user ?? null);
-        if (newSession?.user) {
-          // Fire-and-forget: do NOT await inside onAuthStateChange
-          checkAdminRole(newSession.user.id).then(() => {
-            if (mounted) setLoading(false);
-          });
-        } else {
-          setIsAdmin(false);
-          setLoading(false);
-        }
+        setIsAdmin(extractAdminStatus(newSession));
+        setLoading(false);
       }
     );
 
-    // 2. Then restore session from storage
+    // 2. Khôi phục session từ LocalStorage khi khởi chạy ứng dụng (F5 trang)
     supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
       if (!mounted) return;
+      
       setSession(currentSession);
       setUser(currentSession?.user ?? null);
-      if (currentSession?.user) {
-        checkAdminRole(currentSession.user.id).then(() => {
-          if (mounted) setLoading(false);
-        });
-      } else {
-        setLoading(false);
-      }
+      setIsAdmin(extractAdminStatus(currentSession));
+      setLoading(false);
     });
 
     return () => {
