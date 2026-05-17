@@ -1143,7 +1143,7 @@ useEffect(() => {
 
                   {/* DESCRIPTION */}
 
-                  {section.key !== "newsletter" && (
+                  {!["newsletter", "footer", "partners", "testimonials", "help"].includes(section.key) && (
                     <div>
                       <Label>
                         Nội dung chi tiết
