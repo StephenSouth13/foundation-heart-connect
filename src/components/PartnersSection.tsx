@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { supabase } from "@/integrations/supabase/client";
 
-interface Partner { name: string; logo_url: string; link?: string }
+interface Partner { name: string; logo_url: string; link?: string; position?: string }
 
 const defaultPartners: Partner[] = [
   { name: "MSC", logo_url: "/MSC.png", link: "https://msc.edu.vn" },
@@ -46,7 +46,17 @@ export default function PartnersSection() {
           {data.logos.map((p, i) => (
             <a key={i} href={p.link || "#"} target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center">
               <div className="w-40 h-24 flex items-center justify-center bg-card shadow-soft rounded-xl p-4 transition duration-300 transform group-hover:scale-105 group-hover:shadow-warm">
-                <img src={p.logo_url} alt={p.name} className="max-h-20 object-contain" />
+                {p.logo_url ? (
+                  <img
+                    src={p.logo_url}
+                    alt={p.name}
+                    loading="lazy"
+                    className="max-h-20 max-w-full"
+                    style={{ objectFit: "contain", objectPosition: p.position || "center" }}
+                  />
+                ) : (
+                  <span className="text-xs text-muted-foreground">{p.name}</span>
+                )}
               </div>
               <span className="mt-4 text-earth font-medium group-hover:text-hope transition-colors duration-300">{p.name}</span>
             </a>
