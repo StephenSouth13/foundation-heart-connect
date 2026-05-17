@@ -20,9 +20,20 @@ interface ImageUploadProps {
   position?: string;
   onPositionChange?: (position: string) => void;
   showPosition?: boolean;
+  fit?: "cover" | "contain";
+  previewClassName?: string;
 }
 
-const ImageUpload = ({ value, onChange, folder = "uploads", position = "center", onPositionChange, showPosition = false }: ImageUploadProps) => {
+const ImageUpload = ({
+  value,
+  onChange,
+  folder = "uploads",
+  position = "center",
+  onPositionChange,
+  showPosition = false,
+  fit = "cover",
+  previewClassName = "w-full h-48",
+}: ImageUploadProps) => {
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
@@ -30,11 +41,18 @@ const ImageUpload = ({ value, onChange, folder = "uploads", position = "center",
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    if (file.size > 5 * 1024 * 1024) {
+      toast({ title: "Ảnh quá lớn", description: "Vui lòng chọn ảnh dưới 5MB", variant: "destructive" });
+      return;
+    }
     setUploading(true);
     try {
       const ext = file.name.split(".").pop();
-      const fileName = `${folder}/${Date.now()}.${ext}`;
-      const { error } = await supabase.storage.from("images").upload(fileName, file);
+      const fileName = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+      const { error } = await supabase.storage.from("images").upload(fileName, file, {
+        cacheControl: "3600",
+        upsert: false,
+      });
       if (error) throw error;
       const { data: { publicUrl } } = supabase.storage.from("images").getPublicUrl(fileName);
       onChange(publicUrl);
@@ -50,12 +68,12 @@ const ImageUpload = ({ value, onChange, folder = "uploads", position = "center",
   return (
     <div className="space-y-2">
       {value ? (
-        <div className="relative group rounded-lg overflow-hidden border border-border">
+        <div className={`relative group rounded-lg overflow-hidden border border-border ${fit === "contain" ? "bg-muted/30" : ""}`}>
           <img
             src={value}
             alt="Preview"
-            className="w-full h-48"
-            style={{ objectFit: "cover", objectPosition: position }}
+            className={previewClassName}
+            style={{ objectFit: fit, objectPosition: position }}
           />
           <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
             <Button size="sm" variant="secondary" onClick={() => fileInputRef.current?.click()}>
