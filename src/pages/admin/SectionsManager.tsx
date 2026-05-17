@@ -37,6 +37,7 @@ const SECTIONS = [
   { key: "help", label: "Cách giúp đỡ" },
   { key: "partners", label: "Đối tác" },
   { key: "newsletter", label: "Đăng ký nhận tin" },
+  { key: "footer", label: "Chân trang (Footer)" },
 ];
 
 // ======================================================
