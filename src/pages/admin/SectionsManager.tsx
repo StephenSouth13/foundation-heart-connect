@@ -88,21 +88,8 @@ interface PartnerItem {
   link?: string;
 }
 
-// Cập nhật lại interface tổng hợp này
-interface SectionContentFields {
-  description?: string;
-  tagline?: string;           // 👈 THÊM DÒNG NÀY
-  actions?: HeroAction[];     // 👈 THÊM DÒNG NÀY
-  stats?: StatItem[];
-  items?: TestimonialItem[];
-  logos?: PartnerItem[];
-}
-interface SectionContentFields {
-  description?: string;
-  stats?: StatItem[];
-  items?: TestimonialItem[];
-  logos?: PartnerItem[];
-}
+// Permissive shape — content JSON can have arbitrary section-specific fields
+type SectionContentFields = Record<string, any>;
 
 interface SectionData {
   section_key: string;
