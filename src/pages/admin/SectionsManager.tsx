@@ -1018,9 +1018,25 @@ useEffect(() => {
           <Input value={p.link || ""} placeholder="Website (https://...)"
             onChange={(e) => { const a = [...(currentData.content?.logos || [])]; a[idx] = { ...a[idx], link: e.target.value }; updateContentNestedField(section.key, "logos", a); }} />
           <div>
-            <Label className="text-xs">Logo</Label>
-            <ImageUpload value={p.logo_url || ""} folder={`partners`}
-              onChange={(url) => { const a = [...(currentData.content?.logos || [])]; a[idx] = { ...a[idx], logo_url: url }; updateContentNestedField(section.key, "logos", a); }} />
+            <Label className="text-xs">Logo (nền trong suốt PNG/SVG cho kết quả đẹp nhất)</Label>
+            <ImageUpload
+              value={p.logo_url || ""}
+              folder="partners"
+              fit="contain"
+              previewClassName="w-full h-24"
+              position={p.position || "center"}
+              showPosition
+              onPositionChange={(pos) => {
+                const a = [...(currentData.content?.logos || [])];
+                a[idx] = { ...a[idx], position: pos };
+                updateContentNestedField(section.key, "logos", a);
+              }}
+              onChange={(url) => {
+                const a = [...(currentData.content?.logos || [])];
+                a[idx] = { ...a[idx], logo_url: url };
+                updateContentNestedField(section.key, "logos", a);
+              }}
+            />
           </div>
         </div>
       ))}
