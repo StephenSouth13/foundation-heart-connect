@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { supabase } from "@/integrations/supabase/client";
 
-interface Partner { name: string; logo_url: string; link?: string }
+interface Partner { name: string; logo_url: string; link?: string; position?: string }
 
 const defaultPartners: Partner[] = [
   { name: "MSC", logo_url: "/MSC.png", link: "https://msc.edu.vn" },
