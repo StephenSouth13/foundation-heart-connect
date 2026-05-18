@@ -349,14 +349,34 @@ useEffect(() => {
 
   return (
     <div className="max-w-5xl mx-auto">
-      <h1 className="text-3xl font-bold text-earth mb-8">
-        Quản lý nội dung Sections
-      </h1>
+      {/* Hero header */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-hope via-hope-light to-warmth p-6 sm:p-8 mb-8 shadow-glow">
+        <div className="absolute -top-16 -right-10 w-48 h-48 rounded-full bg-white/20 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-16 -left-10 w-48 h-48 rounded-full bg-warmth/30 blur-3xl pointer-events-none" />
+        <div className="relative">
+          <p className="text-xs uppercase tracking-[0.25em] text-white/80 font-semibold mb-2">Content Studio</p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight">
+            Quản lý nội dung Sections
+          </h1>
+          <p className="text-sm sm:text-base text-white/90 mt-2 max-w-2xl">
+            Chỉnh sửa, ẩn/hiện và CRUD toàn bộ dữ liệu hiển thị trên Landing Page — Header, Hero, Giới thiệu, Dự án, Đối tác, Footer...
+          </p>
+          <div className="flex flex-wrap gap-2 mt-4">
+            <span className="px-3 py-1 rounded-full bg-white/15 backdrop-blur text-white text-xs font-medium border border-white/20">
+              {SECTIONS.length} sections
+            </span>
+            <span className="px-3 py-1 rounded-full bg-white/15 backdrop-blur text-white text-xs font-medium border border-white/20 flex items-center gap-1.5">
+              <Eye className="w-3 h-3" />
+              {Object.values(sections).filter((s) => s.visible).length} đang hiện
+            </span>
+          </div>
+        </div>
+      </div>
 
       <Accordion
         type="single"
         collapsible
-        className="space-y-4"
+        className="space-y-3"
       >
         {SECTIONS.map((section) => {
           const currentData = sections[section.key];
@@ -376,22 +396,30 @@ useEffect(() => {
             <AccordionItem
               key={section.key}
               value={section.key}
-              className="border rounded-lg overflow-hidden bg-card"
+              className="border border-border/60 rounded-2xl overflow-hidden bg-card/90 backdrop-blur shadow-soft hover:shadow-warm transition-shadow"
             >
-              <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                <div className="flex items-center gap-3 w-full">
-                  <span className="text-lg font-semibold text-earth">
-                    {section.label}
-                  </span>
+              <AccordionTrigger className="px-5 sm:px-6 py-4 hover:no-underline group">
+                <div className="flex items-center gap-4 w-full">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-hope/15 to-warmth/30 flex items-center justify-center text-hope font-bold text-sm shrink-0">
+                    {section.label.charAt(0)}
+                  </div>
+                  <div className="flex-1 text-left min-w-0">
+                    <span className="text-base sm:text-lg font-bold text-earth block truncate">
+                      {section.label}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      Key: <code className="text-hope">{section.key}</code>
+                    </span>
+                  </div>
 
-                  <div className="ml-auto mr-4">
+                  <div className="mr-3 shrink-0">
                     {currentData.visible ? (
-                      <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full flex items-center gap-1">
+                      <span className="text-xs bg-hope/10 text-hope px-2.5 py-1 rounded-full flex items-center gap-1 font-medium border border-hope/20">
                         <Eye className="w-3 h-3" />
                         Hiện
                       </span>
                     ) : (
-                      <span className="text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded-full flex items-center gap-1">
+                      <span className="text-xs bg-muted text-muted-foreground px-2.5 py-1 rounded-full flex items-center gap-1 font-medium">
                         <EyeOff className="w-3 h-3" />
                         Ẩn
                       </span>
