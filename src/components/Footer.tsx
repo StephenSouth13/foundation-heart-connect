@@ -32,15 +32,17 @@ const defaults = {
 
 const Footer = () => {
   const [d, setD] = useState<any>(defaults);
+  const [logo, setLogo] = useState<string>("");
 
   useEffect(() => {
     (async () => {
       const { data: row } = await supabase
         .from("section_contents")
-        .select("content")
+        .select("content, image_url")
         .eq("section_key", "footer")
         .maybeSingle();
       const c: any = row?.content || {};
+      setLogo(row?.image_url || "");
       setD({
         ...defaults,
         ...c,
