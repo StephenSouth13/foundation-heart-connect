@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 
 const SECTIONS = [
+  { key: "header", label: "Header / Menu điều hướng" },
   { key: "hero", label: "Hero Section" },
   { key: "about", label: "Giới thiệu" },
   { key: "projects", label: "Dự án nổi bật" },
