@@ -349,14 +349,34 @@ useEffect(() => {
 
   return (
     <div className="max-w-5xl mx-auto">
-      <h1 className="text-3xl font-bold text-earth mb-8">
-        Quản lý nội dung Sections
-      </h1>
+      {/* Hero header */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-hope via-hope-light to-warmth p-6 sm:p-8 mb-8 shadow-glow">
+        <div className="absolute -top-16 -right-10 w-48 h-48 rounded-full bg-white/20 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-16 -left-10 w-48 h-48 rounded-full bg-warmth/30 blur-3xl pointer-events-none" />
+        <div className="relative">
+          <p className="text-xs uppercase tracking-[0.25em] text-white/80 font-semibold mb-2">Content Studio</p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight">
+            Quản lý nội dung Sections
+          </h1>
+          <p className="text-sm sm:text-base text-white/90 mt-2 max-w-2xl">
+            Chỉnh sửa, ẩn/hiện và CRUD toàn bộ dữ liệu hiển thị trên Landing Page — Header, Hero, Giới thiệu, Dự án, Đối tác, Footer...
+          </p>
+          <div className="flex flex-wrap gap-2 mt-4">
+            <span className="px-3 py-1 rounded-full bg-white/15 backdrop-blur text-white text-xs font-medium border border-white/20">
+              {SECTIONS.length} sections
+            </span>
+            <span className="px-3 py-1 rounded-full bg-white/15 backdrop-blur text-white text-xs font-medium border border-white/20 flex items-center gap-1.5">
+              <Eye className="w-3 h-3" />
+              {Object.values(sections).filter((s) => s.visible).length} đang hiện
+            </span>
+          </div>
+        </div>
+      </div>
 
       <Accordion
         type="single"
         collapsible
-        className="space-y-4"
+        className="space-y-3"
       >
         {SECTIONS.map((section) => {
           const currentData = sections[section.key];
