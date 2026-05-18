@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 
 const SECTIONS = [
+  { key: "header", label: "Header / Menu điều hướng" },
   { key: "hero", label: "Hero Section" },
   { key: "about", label: "Giới thiệu" },
   { key: "projects", label: "Dự án nổi bật" },
@@ -1157,9 +1158,58 @@ useEffect(() => {
   </div>
 )}
 
+{/* ==================================================================== */}
+{/* HEADER EDITOR                                                          */}
+{/* ==================================================================== */}
+{section.key === "header" && (
+  <div className="space-y-4 border-t border-border pt-4 mt-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+      <div>
+        <Label className="text-xs">Tên thương hiệu (hiển thị cạnh logo)</Label>
+        <Input value={currentData.content?.brand_name || ""} placeholder="FFVN"
+          onChange={(e) => updateContentNestedField(section.key, "brand_name", e.target.value)} />
+      </div>
+      <div>
+        <Label className="text-xs">Nhãn nút CTA</Label>
+        <Input value={currentData.content?.cta_label || ""} placeholder="Ủng hộ"
+          onChange={(e) => updateContentNestedField(section.key, "cta_label", e.target.value)} />
+      </div>
+      <div className="md:col-span-2">
+        <Label className="text-xs">URL nút CTA</Label>
+        <Input value={currentData.content?.cta_url || ""} placeholder="#contact hoặc https://..."
+          onChange={(e) => updateContentNestedField(section.key, "cta_url", e.target.value)} />
+      </div>
+    </div>
+
+    <div className="p-3 border rounded bg-muted/10 space-y-2">
+      <div className="flex items-center justify-between">
+        <Label className="text-sm font-semibold text-earth">Menu điều hướng</Label>
+        <Button type="button" variant="outline" size="sm"
+          onClick={() => {
+            const arr = currentData.content?.menu || [];
+            updateContentNestedField(section.key, "menu", [...arr, { label: "Mục mới", href: "#" }]);
+          }}><Plus className="w-4 h-4 mr-1" /> Thêm mục</Button>
+      </div>
+      {(currentData.content?.menu || []).map((l: any, idx: number) => (
+        <div key={idx} className="grid grid-cols-[1fr_1fr_auto] gap-2 items-center">
+          <Input value={l.label || ""} placeholder="Nhãn (Giới thiệu)"
+            onChange={(e) => { const a = [...(currentData.content?.menu || [])]; a[idx] = { ...a[idx], label: e.target.value }; updateContentNestedField(section.key, "menu", a); }} />
+          <Input value={l.href || ""} placeholder="#about"
+            onChange={(e) => { const a = [...(currentData.content?.menu || [])]; a[idx] = { ...a[idx], href: e.target.value }; updateContentNestedField(section.key, "menu", a); }} />
+          <Button type="button" variant="ghost" size="icon" className="text-destructive"
+            onClick={() => { const a = (currentData.content?.menu || []).filter((_: any, i: number) => i !== idx); updateContentNestedField(section.key, "menu", a); }}>
+            <Trash2 className="w-4 h-4" /></Button>
+        </div>
+      ))}
+    </div>
+
+    <p className="text-xs text-muted-foreground">Logo Header: dùng ô <strong>"Hình ảnh đại diện"</strong> ở phía trên.</p>
+  </div>
+)}
+
                   {/* DESCRIPTION */}
 
-                  {!["newsletter", "footer", "partners", "testimonials", "help"].includes(section.key) && (
+                  {!["header", "newsletter", "footer", "partners", "testimonials", "help"].includes(section.key) && (
                     <div>
                       <Label>
                         Nội dung chi tiết

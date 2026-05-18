@@ -32,15 +32,17 @@ const defaults = {
 
 const Footer = () => {
   const [d, setD] = useState<any>(defaults);
+  const [logo, setLogo] = useState<string>("");
 
   useEffect(() => {
     (async () => {
       const { data: row } = await supabase
         .from("section_contents")
-        .select("content")
+        .select("content, image_url")
         .eq("section_key", "footer")
         .maybeSingle();
       const c: any = row?.content || {};
+      setLogo(row?.image_url || "");
       setD({
         ...defaults,
         ...c,
@@ -56,8 +58,12 @@ const Footer = () => {
         <div className="grid lg:grid-cols-4 gap-8 mb-12">
           <div className="lg:col-span-1">
             <div className="flex items-center mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-hope to-hope-light rounded-full flex items-center justify-center mr-3">
-                <Heart className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 bg-gradient-to-br from-hope to-hope-light rounded-full flex items-center justify-center mr-3 overflow-hidden shadow-soft">
+                {logo ? (
+                  <img src={logo} alt={d.brand_name} className="w-full h-full object-contain bg-white" />
+                ) : (
+                  <Heart className="w-6 h-6 text-white" />
+                )}
               </div>
               <h3 className="text-2xl font-bold">{d.brand_name}</h3>
             </div>
