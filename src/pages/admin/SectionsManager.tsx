@@ -396,22 +396,30 @@ useEffect(() => {
             <AccordionItem
               key={section.key}
               value={section.key}
-              className="border rounded-lg overflow-hidden bg-card"
+              className="border border-border/60 rounded-2xl overflow-hidden bg-card/90 backdrop-blur shadow-soft hover:shadow-warm transition-shadow"
             >
-              <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                <div className="flex items-center gap-3 w-full">
-                  <span className="text-lg font-semibold text-earth">
-                    {section.label}
-                  </span>
+              <AccordionTrigger className="px-5 sm:px-6 py-4 hover:no-underline group">
+                <div className="flex items-center gap-4 w-full">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-hope/15 to-warmth/30 flex items-center justify-center text-hope font-bold text-sm shrink-0">
+                    {section.label.charAt(0)}
+                  </div>
+                  <div className="flex-1 text-left min-w-0">
+                    <span className="text-base sm:text-lg font-bold text-earth block truncate">
+                      {section.label}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      Key: <code className="text-hope">{section.key}</code>
+                    </span>
+                  </div>
 
-                  <div className="ml-auto mr-4">
+                  <div className="mr-3 shrink-0">
                     {currentData.visible ? (
-                      <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full flex items-center gap-1">
+                      <span className="text-xs bg-hope/10 text-hope px-2.5 py-1 rounded-full flex items-center gap-1 font-medium border border-hope/20">
                         <Eye className="w-3 h-3" />
                         Hiện
                       </span>
                     ) : (
-                      <span className="text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded-full flex items-center gap-1">
+                      <span className="text-xs bg-muted text-muted-foreground px-2.5 py-1 rounded-full flex items-center gap-1 font-medium">
                         <EyeOff className="w-3 h-3" />
                         Ẩn
                       </span>
