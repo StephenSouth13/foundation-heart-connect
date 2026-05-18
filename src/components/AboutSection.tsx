@@ -5,6 +5,23 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import * as LucideIcons from "lucide-react";
 
+// Định nghĩa Interface cấu trúc Node của TipTap JSON thay cho 'any'
+interface TipTapTextNode {
+  type: string;
+  text: string;
+}
+
+interface TipTapParagraphNode {
+  type: string;
+  content?: TipTapTextNode[];
+  attrs?: Record<string, unknown>;
+}
+
+interface TipTapDocument {
+  type: string;
+  content: TipTapParagraphNode[];
+}
+
 interface CoreValueItem {
   title: string;
   description: string;
@@ -12,8 +29,8 @@ interface CoreValueItem {
 }
 
 interface AboutContent {
-  description?: any;
-  mission_text?: any;
+  description?: string | TipTapDocument;
+  mission_text?: string | TipTapDocument;
   mission_italic?: string;
   vision_items?: string[];
   vision_italic?: string;
@@ -30,16 +47,16 @@ interface SectionData {
 
 const DEFAULT_ICONS = [LucideIcons.Heart, LucideIcons.Target, LucideIcons.Lightbulb, LucideIcons.Globe];
 
-// Hàm helper phân rã chuỗi JSON an toàn
-const parseTipTapContent = (contentData: any): string => {
+// Hàm helper phân rã chuỗi JSON an toàn với kiểu dữ liệu chặt chẽ
+const parseTipTapContent = (contentData: string | TipTapDocument | undefined | null): string => {
   if (!contentData) return "";
   if (typeof contentData === "string") return contentData;
-  if (typeof contentData === "object" && contentData.content) {
+  if (typeof contentData === "object" && Array.isArray(contentData.content)) {
     try {
       return contentData.content
-        .map((paragraph: any) => {
-          if (paragraph.content) {
-            return paragraph.content.map((textObj: any) => textObj.text).join("");
+        .map((paragraph: TipTapParagraphNode) => {
+          if (Array.isArray(paragraph.content)) {
+            return paragraph.content.map((textObj: TipTapTextNode) => textObj.text).join("");
           }
           return "";
         })
@@ -87,7 +104,6 @@ const AboutSection = () => {
   const { title, subtitle, content, image_url } = aboutData;
 
   // --- PHÒNG VỆ DỮ LIỆU CHẶT CHẼ (DEFENSIVE FALLBACKS) ---
-  // Đảm bảo nếu Admin bấm upload ảnh gây mất/thiếu các trường con trong content thì web vẫn chạy mượt
   const displayTitle = title || "Quỹ Tương Lai Việt Nam";
   const displaySubtitle = subtitle || "Giá trị cốt lõi";
   
@@ -99,7 +115,6 @@ const AboutSection = () => {
   
   const missionItalic = content?.mission_italic || '"Những bước đi nhỏ hôm nay tạo nền tảng cho thành công ngày mai."';
 
-  // Chống lỗi crash khi content.vision_items bị undefined/null do upload ảnh
   const visionItems = Array.isArray(content?.vision_items) && content.vision_items.length > 0 
     ? content.vision_items 
     : [
@@ -111,7 +126,6 @@ const AboutSection = () => {
       
   const visionItalic = content?.vision_italic || '"Nâng bước sinh viên Việt vươn xa."';
 
-  // Chống lỗi crash khi content.values bị undefined/null do upload ảnh
   const coreValues = Array.isArray(content?.values) && content.values.length > 0
     ? content.values
     : [
@@ -125,7 +139,7 @@ const AboutSection = () => {
     <section id="about" className="py-12 md:py-20 bg-gradient-to-b from-background to-warmth-soft overflow-hidden" ref={ref}>
       <div className={`container mx-auto px-4 sm:px-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         
-        {/* Header Block - Sửa responsive cỡ chữ trên mobile (text-3xl) lên PC (text-5xl) */}
+        {/* Header Block */}
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-earth mb-4 md:mb-6 animate-fade-in">
             {displayTitle}
@@ -135,14 +149,14 @@ const AboutSection = () => {
           </p>
         </div>
 
-        {/* Cấu trúc tích hợp Ảnh đại diện động nếu Admin có upload */}
+        {/* Ảnh đại diện động */}
         {image_url && (
           <div className="w-full max-w-4xl mx-auto mb-12 rounded-xl overflow-hidden shadow-soft h-48 sm:h-72 md:h-96 px-2">
             <img src={image_url} alt="About FFVN" className="w-full h-full object-cover" />
           </div>
         )}
 
-        {/* Sứ mệnh & Tầm nhìn Card Grid - Scale từ 1 cột (Mobile) lên 2 cột (Desktop) */}
+        {/* Sứ mệnh & Tầm nhìn Card Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 mb-12 md:mb-16">
           {/* Card Sứ Mệnh */}
           <Card className="bg-card shadow-soft border-0 hover:shadow-warm transition-all duration-500 md:hover:-translate-y-1">
@@ -181,11 +195,13 @@ const AboutSection = () => {
           <h3 className="text-2xl md:text-3xl font-bold text-earth mb-4">{displaySubtitle}</h3>
         </div>
 
-        {/* Grid 4 Giá trị cốt lõi - Tối ưu hóa điểm gãy: 1 cột (Mobile), 2 cột (Tablet), 4 cột (Desktop) */}
+        {/* Grid 4 Giá trị cốt lõi */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {coreValues.map((value, index) => {
-            const IconComponent = value.icon && (LucideIcons as any)[value.icon] 
-              ? (LucideIcons as any)[value.icon] 
+            // Khử hoàn toàn lỗi ép kiểu 'any' khi truy cập key động của LucideIcons
+            const iconKey = value.icon as keyof typeof LucideIcons;
+            const IconComponent = value.icon && LucideIcons[iconKey]
+              ? (LucideIcons[iconKey] as React.ComponentType<{ className?: string }>)
               : DEFAULT_ICONS[index % DEFAULT_ICONS.length];
 
             return (

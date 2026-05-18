@@ -55,12 +55,16 @@ interface TestimonialItem {
   role: string;
   quote: string;
   avatar?: string;
+  location?: string;
+  rating?: number;
+  content?: string;
 }
 
 interface PartnerItem {
   name: string;
   logo_url: string;
   link?: string;
+  position?: string;
 }
 
 // JSON compatible object
@@ -72,26 +76,101 @@ interface HeroAction {
   url: string;
 }
 
-interface StatItem {
-  label: string;
+interface ImpactStatItem {
   value: string;
+  label: string;
 }
 
-interface TestimonialItem {
-  name: string;
-  role: string;
-  quote: string;
-  avatar?: string;
+interface HelpMethodItem {
+  icon: string;
+  title: string;
+  description: string;
+  features: string[];
+  buttonText: string;
+  buttonVariant: "hope" | "warm" | "outline" | "default";
+  bgGradient: string;
+  url: string;
 }
 
-interface PartnerItem {
+interface PartnerLogoItem {
   name: string;
   logo_url: string;
   link?: string;
+  position?: string;
+}
+
+interface BenefitItem {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface LinkItem {
+  title: string;
+  href: string;
+}
+
+interface MenuItem {
+  label: string;
+  href: string;
+}
+
+interface ValueItem {
+  title?: string;
+  description?: string;
+  icon?: string;
+}
+
+interface SectionCTA {
+  title?: string;
+  description?: string;
+  primary_label?: string;
+  primary_url?: string;
+  secondary_label?: string;
+  secondary_url?: string;
 }
 
 // Permissive shape — content JSON can have arbitrary section-specific fields
-type SectionContentFields = Record<string, any>;
+type SectionContentFields = {
+  stats?: StatItem[];
+  tagline?: string;
+  description?: string;
+  actions?: HeroAction[];
+  items?: TestimonialItem[];
+  impact_title?: string;
+  impact_subtitle?: string;
+  impact_stats?: ImpactStatItem[];
+  methods?: HelpMethodItem[];
+  cta?: SectionCTA;
+  logos?: PartnerLogoItem[];
+  benefits?: BenefitItem[];
+  quick_links?: LinkItem[];
+  support_links?: LinkItem[];
+  menu?: MenuItem[];
+  brand_name?: string;
+  cta_label?: string;
+  cta_url?: string;
+  mission_text?: string;
+  mission_italic?: string;
+  vision_items?: string[];
+  vision_italic?: string;
+  values?: ValueItem[];
+  benefits_title?: string;
+  form_title?: string;
+  counter_text?: string;
+  counter_subtext?: string;
+  submit_label?: string;
+  privacy_note?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+  hours?: string;
+  facebook?: string;
+  instagram?: string;
+  youtube?: string;
+  copyright?: string;
+  [key: string]: unknown;
+};
 
 interface SectionData {
   section_key: string;
@@ -900,11 +979,11 @@ useEffect(() => {
           <Plus className="w-4 h-4 mr-1" /> Thêm chứng thực
         </Button>
       </div>
-      {(currentData.content?.items || []).map((it: any, idx: number) => (
+      {(currentData.content?.items || []).map((it, idx: number) => (
         <div key={idx} className="p-3 border rounded bg-card space-y-2 relative">
           <Button type="button" variant="ghost" size="icon" className="absolute top-2 right-2 text-destructive w-6 h-6"
             onClick={() => {
-              const next = (currentData.content?.items || []).filter((_: any, i: number) => i !== idx);
+              const next = (currentData.content?.items || []).filter((_: TestimonialItem, i: number) => i !== idx);
               updateContentNestedField(section.key, "items", next);
             }}><Trash2 className="w-3 h-3" /></Button>
           <div className="grid grid-cols-2 gap-2">
@@ -942,10 +1021,10 @@ useEffect(() => {
           onChange={(e) => updateContentNestedField(section.key, "impact_subtitle", e.target.value)} />
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-        {(currentData.content?.impact_stats || []).map((s: any, idx: number) => (
+        {(currentData.content?.impact_stats || []).map((s, idx: number) => (
           <div key={idx} className="p-2 border rounded bg-card relative space-y-2">
             <Button type="button" variant="ghost" size="icon" className="absolute top-1 right-1 text-destructive w-6 h-6"
-              onClick={() => { const arr = (currentData.content?.impact_stats || []).filter((_: any, i: number) => i !== idx); updateContentNestedField(section.key, "impact_stats", arr); }}>
+              onClick={() => { const arr = (currentData.content?.impact_stats || []).filter((_: ImpactStatItem, i: number) => i !== idx); updateContentNestedField(section.key, "impact_stats", arr); }}>
               <Trash2 className="w-3 h-3" />
             </Button>
             <Input value={s.value || ""} placeholder="Giá trị"
@@ -973,10 +1052,10 @@ useEffect(() => {
             updateContentNestedField(section.key, "methods", [...m, { icon: "Heart", title: "Tiêu đề", description: "Mô tả", features: [], buttonText: "Tham gia", buttonVariant: "hope", bgGradient: "from-hope/10 to-hope-light/20", url: "#contact" }]);
           }}><Plus className="w-4 h-4 mr-1" /> Thêm phương thức</Button>
       </div>
-      {(currentData.content?.methods || []).map((m: any, idx: number) => (
+      {(currentData.content?.methods || []).map((m, idx: number) => (
         <div key={idx} className="p-3 border rounded bg-card space-y-2 relative">
           <Button type="button" variant="ghost" size="icon" className="absolute top-2 right-2 text-destructive w-6 h-6"
-            onClick={() => { const arr = (currentData.content?.methods || []).filter((_: any, i: number) => i !== idx); updateContentNestedField(section.key, "methods", arr); }}>
+            onClick={() => { const arr = (currentData.content?.methods || []).filter((_: HelpMethodItem, i: number) => i !== idx); updateContentNestedField(section.key, "methods", arr); }}>
             <Trash2 className="w-3 h-3" /></Button>
           <div className="grid grid-cols-2 gap-2">
             <Input value={m.title || ""} placeholder="Tiêu đề"
@@ -995,7 +1074,7 @@ useEffect(() => {
             <Input value={m.url || ""} placeholder="URL nút"
               onChange={(e) => { const a = [...(currentData.content?.methods || [])]; a[idx] = { ...a[idx], url: e.target.value }; updateContentNestedField(section.key, "methods", a); }} />
             <select className="h-10 border rounded px-2 text-sm bg-background" value={m.buttonVariant || "hope"}
-              onChange={(e) => { const a = [...(currentData.content?.methods || [])]; a[idx] = { ...a[idx], buttonVariant: e.target.value }; updateContentNestedField(section.key, "methods", a); }}>
+              onChange={(e) => { const a = [...(currentData.content?.methods || [])]; a[idx] = { ...a[idx], buttonVariant: e.target.value as HelpMethodItem["buttonVariant"] }; updateContentNestedField(section.key, "methods", a); }}>
               <option value="hope">hope</option><option value="warm">warm</option><option value="outline">outline</option><option value="default">default</option>
             </select>
           </div>
@@ -1037,10 +1116,10 @@ useEffect(() => {
         }}><Plus className="w-4 h-4 mr-1" /> Thêm đối tác</Button>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-      {(currentData.content?.logos || []).map((p: any, idx: number) => (
+      {(currentData.content?.logos || []).map((p, idx: number) => (
         <div key={idx} className="p-3 border rounded bg-card space-y-2 relative">
           <Button type="button" variant="ghost" size="icon" className="absolute top-2 right-2 text-destructive w-6 h-6"
-            onClick={() => { const arr = (currentData.content?.logos || []).filter((_: any, i: number) => i !== idx); updateContentNestedField(section.key, "logos", arr); }}>
+            onClick={() => { const arr = (currentData.content?.logos || []).filter((_: PartnerLogoItem, i: number) => i !== idx); updateContentNestedField(section.key, "logos", arr); }}>
             <Trash2 className="w-3 h-3" /></Button>
           <Input value={p.name || ""} placeholder="Tên đối tác"
             onChange={(e) => { const a = [...(currentData.content?.logos || [])]; a[idx] = { ...a[idx], name: e.target.value }; updateContentNestedField(section.key, "logos", a); }} />
@@ -1102,10 +1181,10 @@ useEffect(() => {
             updateContentNestedField(section.key, "benefits", [...arr, { icon: "Heart", title: "Tiêu đề", description: "Mô tả" }]);
           }}><Plus className="w-4 h-4 mr-1" /> Thêm lợi ích</Button>
       </div>
-      {(currentData.content?.benefits || []).map((b: any, idx: number) => (
+      {(currentData.content?.benefits || []).map((b, idx: number) => (
         <div key={idx} className="p-2 border rounded bg-card space-y-2 relative">
           <Button type="button" variant="ghost" size="icon" className="absolute top-1 right-1 text-destructive w-6 h-6"
-            onClick={() => { const arr = (currentData.content?.benefits || []).filter((_: any, i: number) => i !== idx); updateContentNestedField(section.key, "benefits", arr); }}>
+            onClick={() => { const arr = (currentData.content?.benefits || []).filter((_: BenefitItem, i: number) => i !== idx); updateContentNestedField(section.key, "benefits", arr); }}>
             <Trash2 className="w-3 h-3" /></Button>
           <div className="grid grid-cols-2 gap-2">
             <Input value={b.title || ""} placeholder="Tiêu đề"
@@ -1170,14 +1249,14 @@ useEffect(() => {
               updateContentNestedField(section.key, field, [...arr, { title: "Nhãn", href: "#" }]);
             }}><Plus className="w-4 h-4 mr-1" /> Thêm</Button>
         </div>
-        {(currentData.content?.[field] || []).map((l: any, idx: number) => (
+        {((currentData.content?.[field] as LinkItem[]) || []).map((l, idx: number) => (
           <div key={idx} className="grid grid-cols-[1fr_1fr_auto] gap-2 items-center">
             <Input value={l.title || ""} placeholder="Nhãn"
-              onChange={(e) => { const a = [...(currentData.content?.[field] || [])]; a[idx] = { ...a[idx], title: e.target.value }; updateContentNestedField(section.key, field, a); }} />
+              onChange={(e) => { const a = [...((currentData.content?.[field] as LinkItem[]) || [])]; a[idx] = { ...a[idx], title: e.target.value }; updateContentNestedField(section.key, field, a); }} />
             <Input value={l.href || ""} placeholder="Đường dẫn"
-              onChange={(e) => { const a = [...(currentData.content?.[field] || [])]; a[idx] = { ...a[idx], href: e.target.value }; updateContentNestedField(section.key, field, a); }} />
+              onChange={(e) => { const a = [...((currentData.content?.[field] as LinkItem[]) || [])]; a[idx] = { ...a[idx], href: e.target.value }; updateContentNestedField(section.key, field, a); }} />
             <Button type="button" variant="ghost" size="icon" className="text-destructive"
-              onClick={() => { const a = (currentData.content?.[field] || []).filter((_: any, i: number) => i !== idx); updateContentNestedField(section.key, field, a); }}>
+              onClick={() => { const a = ((currentData.content?.[field] as LinkItem[]) || []).filter((_: LinkItem, i: number) => i !== idx); updateContentNestedField(section.key, field, a); }}>
               <Trash2 className="w-4 h-4" /></Button>
           </div>
         ))}
@@ -1218,14 +1297,14 @@ useEffect(() => {
             updateContentNestedField(section.key, "menu", [...arr, { label: "Mục mới", href: "#" }]);
           }}><Plus className="w-4 h-4 mr-1" /> Thêm mục</Button>
       </div>
-      {(currentData.content?.menu || []).map((l: any, idx: number) => (
+      {(currentData.content?.menu || []).map((l, idx: number) => (
         <div key={idx} className="grid grid-cols-[1fr_1fr_auto] gap-2 items-center">
           <Input value={l.label || ""} placeholder="Nhãn (Giới thiệu)"
             onChange={(e) => { const a = [...(currentData.content?.menu || [])]; a[idx] = { ...a[idx], label: e.target.value }; updateContentNestedField(section.key, "menu", a); }} />
           <Input value={l.href || ""} placeholder="#about"
             onChange={(e) => { const a = [...(currentData.content?.menu || [])]; a[idx] = { ...a[idx], href: e.target.value }; updateContentNestedField(section.key, "menu", a); }} />
           <Button type="button" variant="ghost" size="icon" className="text-destructive"
-            onClick={() => { const a = (currentData.content?.menu || []).filter((_: any, i: number) => i !== idx); updateContentNestedField(section.key, "menu", a); }}>
+            onClick={() => { const a = (currentData.content?.menu || []).filter((_: MenuItem, i: number) => i !== idx); updateContentNestedField(section.key, "menu", a); }}>
             <Trash2 className="w-4 h-4" /></Button>
         </div>
       ))}
